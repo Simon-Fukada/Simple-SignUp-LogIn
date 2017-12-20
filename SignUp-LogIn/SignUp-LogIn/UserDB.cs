@@ -28,7 +28,7 @@ namespace SignUp_LogIn
         {
             string line;
             
-            FileStream fs = new FileStream(path,FileMode.Append,FileAccess.Write);
+            FileStream fs = new FileStream(path,FileMode.Create,FileAccess.Write);
             StreamWriter sw = new StreamWriter(fs); 
             
             //loop through list to write usernames and passwords to file
@@ -38,6 +38,39 @@ namespace SignUp_LogIn
                 sw.WriteLine(line);
             }
             sw.Close();
+        }
+
+        public List<User> LoadList()//Metod to load list from file
+        {
+            string line;
+            string[] parts;
+            FileStream fs = new FileStream(path,FileMode.OpenOrCreate,FileAccess.Read);
+            StreamReader sr = new StreamReader(fs);
+
+            while(!sr.EndOfStream)
+            {
+                line = sr.ReadLine();
+                parts = line.Split(',');
+
+                User existingUser = new User(parts[0],parts[1]);
+                List.Add(existingUser);
+            }
+            sr.Close();
+            return List;
+        }
+
+        //Compares username and password for sign in to list of existing usernames and passwords
+        public bool Check (string user,string password)
+        {
+            bool confirm = false;
+            foreach (User u in List)
+            {
+                if(u.UserName == user && u.Password == password)
+                {
+                    confirm = true;
+                }
+            }
+            return confirm;
         }
 
     }

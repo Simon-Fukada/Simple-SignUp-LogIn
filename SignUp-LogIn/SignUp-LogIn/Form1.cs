@@ -17,7 +17,7 @@ namespace SignUp_LogIn
         {
             InitializeComponent();
         }
-        UserDB newUsers = new UserDB(); //Instantiate UserDB list object
+        UserDB Users = new UserDB(); //Instantiate UserDB list object
 
         //Encrypt password with MD5
         static string Encrypt (string Value)
@@ -38,7 +38,7 @@ namespace SignUp_LogIn
             string password = Encrypt(txtPassword.Text);// Encrypting password with md5 here
 
             User newUser = new User(username,password);//Instantiate User object
-            newUsers.AddToList(newUser); //Add newUser object to UserDB list
+            Users.AddToList(newUser); //Add newUser object to UserDB list
 
             //Clears text boxes and focuses on username
             txtUserName.Clear();
@@ -48,7 +48,27 @@ namespace SignUp_LogIn
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            newUsers.SaveList();//Writes newUsers list to file on closing
+            Users.SaveList();//Writes newUsers list to file on closing
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Users.LoadList();
+        }
+        //Sign In event
+        private void btnSignIn_Click(object sender, EventArgs e)
+        {
+            string username = txtUserName.Text;
+            string password = Encrypt(txtPassword.Text);// Encrypting password with md5 here
+
+           if(Users.Check(username, password))
+            {
+                lblMessage.Text = "You are now logged in!";
+            }
+           else
+            {
+                lblMessage.Text = "You are a failure!"; 
+            } 
         }
     }
 }
