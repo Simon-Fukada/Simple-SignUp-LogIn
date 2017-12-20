@@ -81,6 +81,7 @@
             this.btnSignUp.TabIndex = 4;
             this.btnSignUp.Text = "SignUp";
             this.btnSignUp.UseVisualStyleBackColor = true;
+            this.btnSignUp.Click += new System.EventHandler(this.btnSignUp_Click);
             // 
             // btnSignIn
             // 
@@ -105,6 +106,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "Sign In";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
