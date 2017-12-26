@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace SignUp_LogIn
 {
     //Class with methods to read and write list to file, and instantiate list objects
-    class UserDB
+    public class UserDB
     {
         const string path = "UserDB.txt"; 
 
