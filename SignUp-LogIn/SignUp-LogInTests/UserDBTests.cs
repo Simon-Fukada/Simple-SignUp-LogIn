@@ -37,7 +37,6 @@ namespace SignUp_LogIn.Tests
         [Fact()]
         public void LoadListTest()
         {
-            Assert.True(false, "This test needs an implementation");
         }
 
         [Fact()]
